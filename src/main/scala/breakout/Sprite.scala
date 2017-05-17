@@ -9,6 +9,6 @@ abstract class Sprite() {
   var i_height: Int
   var image: Image
 
-  def rectangle(): Rectangle = new Rectangle(x, y, image getWidth(null), image getHeight(null))
+  def rectangle(): Rectangle = new Rectangle(x, y, image getWidth null, image getHeight null)
 }
 
