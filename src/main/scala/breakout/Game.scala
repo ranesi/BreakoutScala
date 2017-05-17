@@ -9,12 +9,14 @@ import java.awt.event.{KeyAdapter, KeyEvent}
 import java.util.{Timer, TimerTask}
 
 class Game extends JPanel {
+
   val BRICK_NUM = 80
   val DELAY = 1000
   val PERIOD = 5
   val WIDTH = 400
   val HEIGHT = 400
   val BOTTOM = 390
+
   var timer: Timer = _
   var ball: Projectile = _
   var bat: Bat = _
@@ -25,27 +27,29 @@ class Game extends JPanel {
   var win: Boolean = false
 //  var level: Array[(Int, Int, Int, Int, Int, Int, Int, Int)] = _
   var i_bricks: Int = 0
+
   initFrame()
+
   def initFrame() {
-    addKeyListener(new TAdapter())
+    addKeyListener(new TAdapter)
     setFocusable(true)
 //    val level_gen: Level = new Level
 //    level = level_gen.generateLevel() //
     score = 100
     counter = 0
-    bricks = new Array[Brick](BRICK_NUM)
+    bricks = new Array[Brick](_length = BRICK_NUM)
     setBackground(WHITE)
     setDoubleBuffered(true)
-    timer = new Timer()
-    timer scheduleAtFixedRate(new ScheduleTask, DELAY, PERIOD)
+    timer = new Timer
+    timer scheduleAtFixedRate(new ScheduleTask, Int int2long DELAY, Int int2long PERIOD)
   }
   override def addNotify(): Unit = {
     super.addNotify()
     gameInit()
   }
   def gameInit(): Unit = {
-    ball = new Projectile()
-    bat = new Bat()
+    ball = new Projectile
+    bat = new Bat
     var k = 0
     for (i <- 0 to 9) for (j <- 0 to 7) {
         bricks(k) = new Brick(false, true, j * 40 + 30, i * 10 + 50)
@@ -61,23 +65,23 @@ class Game extends JPanel {
   def drawObjects(g2d: Graphics2D): Unit = {
     val fm: FontMetrics = getFontMetrics(new Font("Courier New", PLAIN, 12))
     val str = "Score: " + score toString()
-    g2d.setColor(BLACK)
-    g2d.drawString(str, (WIDTH / (fm stringWidth str)) / 2, HEIGHT / 2 + 160)
-    g2d.drawImage(ball image, ball x, ball y, ball i_width, ball i_height, this)
-    g2d.drawImage(bat image, bat x, bat y, bat i_width, bat i_height, this)
+    g2d setColor BLACK
+    g2d drawString(str, (WIDTH / (fm stringWidth str)) / 2, HEIGHT / 2 + 160)
+    g2d drawImage(ball image, ball x, ball y, ball i_width, ball i_height, this)
+    g2d drawImage(bat image, bat x, bat y, bat i_width, bat i_height, this)
     for (i <- 0 until BRICK_NUM)
       if (!(bricks(i) destroyed))
         g2d.drawImage(bricks(i) image, bricks(i) x, bricks(i) y, bricks(i) i_width, bricks(i) i_height, this)
   }
   def gameOver(g2d: Graphics2D) {
-    val ss = "Final score: %s" format Integer.toString(score)
+    val str = "Final score: " + (score toString)
     val fm: FontMetrics = getFontMetrics(new Font("Courier New", PLAIN, 12))
-    g2d.setColor(BLACK)
-    g2d.drawString(ss, (WIDTH - fm.stringWidth(ss)) / 2, HEIGHT / 2)
+    g2d setColor BLACK
+    g2d drawString(str, (WIDTH - (fm stringWidth str)) / 2, HEIGHT / 2)
   }
   class TAdapter extends KeyAdapter {
-    override def keyReleased(e: KeyEvent): Unit = bat.keyReleased(e)
-    override def keyPressed(e: KeyEvent): Unit = bat.keyPressed(e)
+    override def keyReleased(e: KeyEvent): Unit = bat keyReleased e
+    override def keyPressed(e: KeyEvent): Unit = bat keyPressed e
   }
   class ScheduleTask extends TimerTask {
     def run(): Unit = {
@@ -105,7 +109,7 @@ class Game extends JPanel {
         new Point(bl + bw + 1, bt), new Point(bl - 1, bt), new Point(bl, bt - 1), new Point(bl, bt + bh + 1)
       )
       if ((ball rectangle() getMaxY) > BOTTOM) stopGame()
-      for (i <- 0.until(BRICK_NUM)) {
+      for (i <- 0 until BRICK_NUM) {
         if (bricks(i) destroyed)
           j += 1
         if (j + i_bricks == BRICK_NUM) {
@@ -132,7 +136,7 @@ class Game extends JPanel {
           ball x_dir = 1; ball y_dir = -1
         }
       }
-      for (i <- 0.until(BRICK_NUM)) {
+      for (i <- 0 until BRICK_NUM) {
         if (ball rectangle() intersects (bricks(i) rectangle())) {
           if (!(bricks(i) destroyed)) {
             if (bricks(i) rectangle() contains pr) ball x_dir = -1
