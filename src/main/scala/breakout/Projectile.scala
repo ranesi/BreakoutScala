@@ -13,9 +13,9 @@ class Projectile extends Sprite {
   var y_dir: Int = -1
   override var x: Int = p_init_x
   override var y: Int = p_init_y
-  override var image: Image = ii.getImage
-  override var i_width: Int = image.getWidth(null)
-  override var i_height: Int = image.getHeight(null)
+  override var image: Image = ii getImage
+  override var i_width: Int = image getWidth null
+  override var i_height: Int = image getHeight null
 
   def move(): Unit = {
     x += x_dir

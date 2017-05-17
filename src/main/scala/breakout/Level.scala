@@ -23,5 +23,5 @@ class Level {
   var levels = mutable.MutableList[Array[(Int, Int, Int, Int, Int, Int, Int, Int)]]()
   levels += lvl_a
 
-  def generateLevel(): Array[(Int, Int, Int, Int, Int, Int, Int, Int)] = levels(Random.nextInt(levels.size))
+  def generateLevel(): Array[(Int, Int, Int, Int, Int, Int, Int, Int)] = levels(Random nextInt(levels size))
 }

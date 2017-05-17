@@ -13,9 +13,9 @@ class Bat extends Sprite {
   var dx: Int = 0
   override var x: Int = bat_init_x
   override var y: Int = bat_init_y
-  override var image: Image = ii.getImage
-  override var i_width: Int = image.getWidth(null)
-  override var i_height: Int = image.getHeight(null)
+  override var image: Image = ii getImage
+  override var i_width: Int = image getWidth null
+  override var i_height: Int = image getHeight null
 
   def move() {
     x += dx

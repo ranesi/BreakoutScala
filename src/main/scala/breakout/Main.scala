@@ -8,10 +8,10 @@ import java.awt._
 
 object Main {
   def main(args: Array[String]) {
-    EventQueue.invokeLater(() => {
+    EventQueue invokeLater(() => {
       def game() = {
         val game = new Breakout
-        game.setVisible(true)
+        game setVisible(true)
       }
 
       game()

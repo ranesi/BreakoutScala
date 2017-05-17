@@ -30,7 +30,7 @@ class Game extends JPanel {
     addKeyListener(new TAdapter())
     setFocusable(true)
 //    val level_gen: Level = new Level
-//    level = level_gen.generateLevel()
+//    level = level_gen.generateLevel() //
     score = 100
     counter = 0
     bricks = new Array[Brick](BRICK_NUM)
